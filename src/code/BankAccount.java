@@ -10,20 +10,24 @@ public class BankAccount
         this.balance = balance;
     }
 
-    private static double depositMoney(final double amount)
+    private static double deposit(final double amount)
     {
         return 2.0;
     }
 
-    private static void checkBalance()
+    public static double getBalanceUsd()
     {
 
+        return 0;
     }
 
-    private static double withdrawMoney(final double amount)
+    private double withdraw(final double amount)
     {
-         double newBalance = balance - amount;
+         double newBalance = this.balance - amount;
          return newBalance;
     }
 
+    public void transferToBank(final BankAccount account, final String accountNumber, final int i)
+    {
+    }
 }
