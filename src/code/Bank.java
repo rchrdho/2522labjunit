@@ -1,14 +1,17 @@
 public class Bank
 {
-    private final BankAccount bankAccount;
 
-    Bank(final BankAccount bankAccount)
+    public Bank()
     {
-        this.bankAccount = bankAccount;
+
     }
 
     public void addAccount(final BankAccount bankAccount)
     {
 
+    }
+
+    public BankAccount retrieveAccount(final String number)
+    {
     }
 }
