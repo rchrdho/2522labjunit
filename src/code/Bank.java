@@ -1,6 +1,3 @@
-//
-//gem
-
 public class Bank
 {
     private final BankAccount bankAccount;
