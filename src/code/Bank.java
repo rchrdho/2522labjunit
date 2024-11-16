@@ -13,5 +13,11 @@ public class Bank
 
     public BankAccount retrieveAccount(final String number)
     {
+        return null;
+    }
+
+    public int totalBalanceUsd()
+    {
+        return 0;
     }
 }

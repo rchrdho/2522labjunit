@@ -7,27 +7,33 @@ public class BankAccount
                 final double balance)
     {
         this.accountNumber = accountNumber;
-        this.balance = balance;
+        this.balance       = balance;
     }
 
-    private static double deposit(final double amount)
+    public void deposit(final double depositAmount)
     {
-        return 2.0;
+        balance += depositAmount;
     }
 
-    public static double getBalanceUsd()
+    public final double getBalanceUsd()
     {
-
-        return 0;
+        return balance;
     }
 
-    private double withdraw(final double amount)
+    public final void withdraw(final double withdrawAmount)
     {
-         double newBalance = this.balance - amount;
-         return newBalance;
+        balance -= withdrawAmount;
     }
 
-    public void transferToBank(final BankAccount account, final String accountNumber, final int i)
+    public void transferToBank(final BankAccount account,
+                               final String accountNumber,
+                               final int bankId)
     {
+
+    }
+
+    public static void main(final String[] args)
+    {
+
     }
 }
