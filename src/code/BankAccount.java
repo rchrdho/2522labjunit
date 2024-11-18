@@ -1,5 +1,7 @@
 public class BankAccount
 {
+    private static final int MIN_BALANCE_AMOUNT_USD = 0;
+
     private double       balance;
     private final String accountNumber;
 
@@ -19,6 +21,11 @@ public class BankAccount
         balance += depositAmount;
     }
 
+    public final String getAccountNumber()
+    {
+        return accountNumber;
+    }
+
     public final double getBalanceUsd()
     {
         return balance;
@@ -35,24 +42,37 @@ public class BankAccount
                                      final String      accountNumber,
                                      final int         amount)
     {
-        isMatchingAccountNumber(accountNumber);
+        isMatchingAccountNumber(account, accountNumber);
 
-        this.deposit(amount);
+        account.deposit(amount);
+
+        this.withdraw(amount);
     }
 
     private void isValidAccountNumber(final String accountNumber)
     {
+        if(accountNumber == null)
+        {
+            throw new IllegalArgumentException("Account Number cannot be null");
+        }
+
         boolean emptyAccountNum = accountNumber.isBlank();
 
         if(accountNumber.isEmpty() && !emptyAccountNum)
         {
-            throw new IllegalArgumentException("Invalid Account Number");
+            throw new IllegalArgumentException("Account Number cannot be empty");
         }
     }
 
-    private void isMatchingAccountNumber(final String accountNumber)
+    private void isMatchingAccountNumber(final BankAccount account,
+                                         final String accountNumber)
     {
         isValidAccountNumber(accountNumber);
+
+        if(account.getAccountNumber().equals(accountNumber))
+        {
+            throw new IllegalArgumentException("Cannot transfer to the same account");
+        }
 
         if(!accountNumber.equalsIgnoreCase(this.accountNumber))
         {
@@ -62,7 +82,7 @@ public class BankAccount
 
     private void isValidDepositAmount(final double depositAmount)
     {
-        if(depositAmount < 0)
+        if(depositAmount < MIN_BALANCE_AMOUNT_USD)
         {
             throw new IllegalArgumentException("Deposit amount must be positive");
         }
@@ -70,6 +90,11 @@ public class BankAccount
 
     private void isValidWithdrawAmount(final double withdrawAmount)
     {
+        if(withdrawAmount < MIN_BALANCE_AMOUNT_USD)
+        {
+            throw new IllegalArgumentException("Withdrawal amount must be positive");
+        }
+
         if(balance < withdrawAmount)
         {
             throw new IllegalArgumentException("Insufficient funds");

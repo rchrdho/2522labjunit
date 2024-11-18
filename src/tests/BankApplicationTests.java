@@ -26,8 +26,6 @@ public class BankApplicationTests
         emptyAccount = new BankAccount("98787", 0);
         bank1.addAccount(account1);
         bank2.addAccount(account2);
-        bank1.addAccount(account1);
-        bank2.addAccount(account2);
         bank1.addAccount(account3);
         bank1.addAccount(account4);
     }
@@ -86,10 +84,10 @@ public class BankApplicationTests
     @Test
     void totalBalanceCalculationForBanks()
     {
-        assertEquals(1000, bank1.totalBalanceUsd());
+        assertEquals(2000, bank1.totalBalanceUsd());
         assertEquals(500, bank2.totalBalanceUsd());
         bank1.addAccount(new BankAccount("33333", 200));
-        assertEquals(1200, bank1.totalBalanceUsd());
+        assertEquals(2200, bank1.totalBalanceUsd());
     }
 
     @Test
@@ -146,7 +144,7 @@ public class BankApplicationTests
     {
         account1.deposit(500);
         account2.deposit(300);
-        assertEquals(1800, bank1.totalBalanceUsd() + bank2.totalBalanceUsd());
+        assertEquals(3300, bank1.totalBalanceUsd() + bank2.totalBalanceUsd());
     }
 
     @Test
@@ -154,7 +152,7 @@ public class BankApplicationTests
     {
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
                 () -> bank1.addAccount(new BankAccount(null, 100)));
-        assertEquals("Account ID cannot be null", exception.getMessage());
+        assertEquals("Account Number cannot be null", exception.getMessage());
     }
 
     @Test
@@ -162,7 +160,7 @@ public class BankApplicationTests
     {
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
                 () -> bank1.addAccount(new BankAccount("", 100)));
-        assertEquals("Account ID cannot be empty", exception.getMessage());
+        assertEquals("Account Number cannot be empty", exception.getMessage());
     }
 
     @Test
