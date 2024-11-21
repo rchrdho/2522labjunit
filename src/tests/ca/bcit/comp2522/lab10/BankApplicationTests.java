@@ -1,8 +1,9 @@
+package  ca.bcit.comp2522.lab10;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Assertions.*;
 
 public class BankApplicationTests
 {
