@@ -21,7 +21,8 @@ public class BankAccount {
      * @param balance       the initial balance in the account
      * @throws IllegalArgumentException if the account number is invalid
      */
-    BankAccount(final String accountNumber, final double balance)
+    BankAccount(final String accountNumber,
+                final double balance)
     {
         isValidAccountNumber(accountNumber);
 
@@ -84,8 +85,8 @@ public class BankAccount {
      * @throws IllegalArgumentException if the account numbers do not match or the amount is invalid
      */
     public final void transferToBank(final BankAccount account,
-                                     final String accountNumber,
-                                     final int amount)
+                                     final String      accountNumber,
+                                     final int         amount)
     {
         isMatchingAccountNumber(account, accountNumber);
 
@@ -102,7 +103,8 @@ public class BankAccount {
             throw new IllegalArgumentException("Account Number cannot be null");
         }
 
-        boolean emptyAccountNum = accountNumber.isBlank();
+        boolean emptyAccountNum;
+        emptyAccountNum = accountNumber.isBlank();
 
         if (accountNumber.isEmpty() && !emptyAccountNum)
         {
@@ -112,7 +114,7 @@ public class BankAccount {
 
     // Validates that the account numbers match correctly for a transfer operation.
     private void isMatchingAccountNumber(final BankAccount account,
-                                         final String accountNumber)
+                                         final String      accountNumber)
     {
         isValidAccountNumber(accountNumber);
 

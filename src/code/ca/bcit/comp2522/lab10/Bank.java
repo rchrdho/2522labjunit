@@ -55,12 +55,12 @@ public class Bank
     // Validates that the account number is not null or empty.
     private void isValidAccountNumber(final String accountNumber)
     {
-        if (accountNumber == null)
+        if(accountNumber == null)
         {
             throw new IllegalArgumentException("Account Number cannot be null");
         }
 
-        if (accountNumber.isEmpty())
+        if(accountNumber.isEmpty())
         {
             throw new IllegalArgumentException("Account Number cannot be empty");
         }
@@ -71,7 +71,7 @@ public class Bank
     {
         isValidAccountNumber(accountNumber);
 
-        if (!accounts.containsKey(accountNumber))
+        if(!accounts.containsKey(accountNumber))
         {
             throw new IllegalArgumentException("Account not found");
         }
