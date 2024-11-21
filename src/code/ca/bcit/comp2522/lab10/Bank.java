@@ -60,7 +60,11 @@ public class Bank
             throw new IllegalArgumentException("Account Number cannot be null");
         }
 
-        if(accountNumber.isEmpty())
+        final boolean emptyAccountNumber;
+
+        emptyAccountNumber = accountNumber.isEmpty();
+
+        if(emptyAccountNumber)
         {
             throw new IllegalArgumentException("Account Number cannot be empty");
         }

@@ -8,39 +8,40 @@ package ca.bcit.comp2522.lab10;
  * @author Richard Ho
  * @author Gems
  */
-public class BankAccount {
+public class BankAccount
+{
     private static final int MIN_BALANCE_AMOUNT_USD = 0;
 
-    private double balance;
+    private double       balanceUsd;
     private final String accountNumber;
 
     /**
      * Constructs a BankAccount object with the specified account number and balance.
      *
      * @param accountNumber the unique identifier for the account
-     * @param balance       the initial balance in the account
+     * @param balanceUsd       the initial balance in the account
      * @throws IllegalArgumentException if the account number is invalid
      */
     BankAccount(final String accountNumber,
-                final double balance)
+                final double balanceUsd)
     {
         isValidAccountNumber(accountNumber);
 
         this.accountNumber = accountNumber;
-        this.balance = balance;
+        this.balanceUsd    = balanceUsd;
     }
 
     /**
      * Deposits a specified amount into the account.
      *
-     * @param depositAmount the amount to deposit
+     * @param depositAmountUsd the amount to deposit
      * @throws IllegalArgumentException if the deposit amount is invalid
      */
-    public void deposit(final double depositAmount)
+    public void deposit(final double depositAmountUsd)
     {
-        isValidDepositAmount(depositAmount);
+        isValidDepositAmount(depositAmountUsd);
 
-        balance += depositAmount;
+        balanceUsd += depositAmountUsd;
     }
 
     /**
@@ -60,20 +61,20 @@ public class BankAccount {
      */
     public final double getBalanceUsd()
     {
-        return balance;
+        return balanceUsd;
     }
 
     /**
      * Withdraws a specified amount from the account.
      *
-     * @param withdrawAmount the amount to withdraw
+     * @param withdrawAmountUsd the amount to withdraw
      * @throws IllegalArgumentException if the withdrawal amount is invalid or insufficient funds
      */
-    public final void withdraw(final double withdrawAmount)
+    public final void withdraw(final double withdrawAmountUsd)
     {
-        isValidWithdrawAmount(withdrawAmount);
+        isValidWithdrawAmount(withdrawAmountUsd);
 
-        balance -= withdrawAmount;
+        balanceUsd -= withdrawAmountUsd;
     }
 
     /**
@@ -81,18 +82,18 @@ public class BankAccount {
      *
      * @param account        the recipient bank account
      * @param accountNumber  the recipient account number
-     * @param amount         the amount to transfer
+     * @param amountUsd         the amount to transfer
      * @throws IllegalArgumentException if the account numbers do not match or the amount is invalid
      */
     public final void transferToBank(final BankAccount account,
                                      final String      accountNumber,
-                                     final int         amount)
+                                     final int         amountUsd)
     {
         isMatchingAccountNumber(account, accountNumber);
 
-        account.deposit(amount);
+        account.deposit(amountUsd);
 
-        this.withdraw(amount);
+        this.withdraw(amountUsd);
     }
 
     // Validates that the account number is not null, empty, or blank.
@@ -103,7 +104,7 @@ public class BankAccount {
             throw new IllegalArgumentException("Account Number cannot be null");
         }
 
-        boolean emptyAccountNum;
+        final boolean emptyAccountNum;
         emptyAccountNum = accountNumber.isBlank();
 
         if (accountNumber.isEmpty() && !emptyAccountNum)
@@ -130,23 +131,23 @@ public class BankAccount {
     }
 
     // Validates that the deposit amount is positive.
-    private void isValidDepositAmount(final double depositAmount)
+    private void isValidDepositAmount(final double depositAmountUsd)
     {
-        if (depositAmount < MIN_BALANCE_AMOUNT_USD)
+        if (depositAmountUsd < MIN_BALANCE_AMOUNT_USD)
         {
             throw new IllegalArgumentException("Deposit amount must be positive");
         }
     }
 
     // Validates that the withdrawal amount is positive and that there are sufficient funds.
-    private void isValidWithdrawAmount(final double withdrawAmount)
+    private void isValidWithdrawAmount(final double withdrawAmountUsd)
     {
-        if (withdrawAmount < MIN_BALANCE_AMOUNT_USD)
+        if (withdrawAmountUsd < MIN_BALANCE_AMOUNT_USD)
         {
             throw new IllegalArgumentException("Withdrawal amount must be positive");
         }
 
-        if (balance < withdrawAmount)
+        if (balanceUsd < withdrawAmountUsd)
         {
             throw new IllegalArgumentException("Insufficient funds");
         }
