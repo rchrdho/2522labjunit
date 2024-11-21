@@ -19,7 +19,7 @@ public class BankAccount
      * Constructs a BankAccount object with the specified account number and balance.
      *
      * @param accountNumber the unique identifier for the account
-     * @param balanceUsd       the initial balance in the account
+     * @param balanceUsd       the initial balance in the account in USD
      * @throws IllegalArgumentException if the account number is invalid
      */
     BankAccount(final String accountNumber,
@@ -96,7 +96,10 @@ public class BankAccount
         this.withdraw(amountUsd);
     }
 
-    // Validates that the account number is not null, empty, or blank.
+    /*
+     * Validates that the account number is not null, empty, or blank.
+     * @param accountNumber the account number for the bank
+     */
     private void isValidAccountNumber(final String accountNumber)
     {
         if (accountNumber == null)
@@ -130,7 +133,10 @@ public class BankAccount
         }
     }
 
-    // Validates that the deposit amount is positive.
+    /*
+     * Validates that the deposit amount is positive.
+     * @param depositAmountUsd deposited amount of money in US Dollars
+     */
     private void isValidDepositAmount(final double depositAmountUsd)
     {
         if (depositAmountUsd < MIN_BALANCE_AMOUNT_USD)
@@ -139,7 +145,10 @@ public class BankAccount
         }
     }
 
-    // Validates that the withdrawal amount is positive and that there are sufficient funds.
+    /*
+     * Validates that the withdrawal amount is positive and that there are sufficient funds.
+     * @param withdrawAmountUsd amount withdrawn in US Dollars
+     */
     private void isValidWithdrawAmount(final double withdrawAmountUsd)
     {
         if (withdrawAmountUsd < MIN_BALANCE_AMOUNT_USD)
